@@ -53,3 +53,19 @@
 .information .information-bio {
     padding-top: 8px;
 }
+
+@media only screen and (max-width: 1024px) {
+    .list-profiles-container {
+        width: 90%;
+    }
+    
+    .list-profiles-container .profile-information {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 431px) {
+    .list-profiles-container .profile-information {
+        width: 100%;
+    }
+}
