@@ -9,28 +9,41 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
 </head>
 <body>
-    <div class="list-profiles-title">
-      <h2 >
-        List Profile
-      </h2>
-    </div>
-    <div id="list-profiles-container" class="list-profiles-container">
-      <!-- Each profile is each profile-information -->
-      <div class="profile-information" v-for="profile in listProfiles">
-        <div class="profile-avatar-information-container">
-          <div class="avatar">
-            <img
-              class="avatar-image"
-              v-bind:src="profile.avatar"
-            />
-          </div>
-          <div class="information">
-            <div class="information-name">{{profile.first_name}} {{profile.last_name}}</div>
-            <div class="information-bio">
-              {{profile.bio}}
+    <div id="app">
+
+      <div class="list-profiles-title">
+        <h2 >
+          List Profile
+        </h2>
+      </div>
+      <div id="list-profiles-container" class="list-profiles-container">
+        <!-- Each profile is each profile-information -->
+        <div class="profile-information" v-for="profile in currentListDisplay">
+          <div class="profile-avatar-information-container">
+            <div class="avatar">
+              <img
+                class="avatar-image"
+                v-bind:src="profile.avatar"
+              />
+            </div>
+            <div class="information">
+              <div class="information-name">{{profile.first_name}} {{profile.last_name}}</div>
+              <div class="information-bio">
+                {{profile.bio}}
+              </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="pagination" v-if="paginationLoaded">
+        <a href="#">&laquo;</a>
+        <a href="#">1</a>
+        <a href="#" class="active">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">&raquo;</a>
       </div>
     </div>
 </body>

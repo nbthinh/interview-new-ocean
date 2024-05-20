@@ -1,13 +1,16 @@
 var app = new Vue({
-    el: "#list-profiles-container",
+    el: "#app",
     data: {
-        listProfiles: []
+        listProfiles: [],
+        paginationLoaded: false,
+        currentPage: 1,
+        currentListDisplay: []
     },
     methods: {
         async getListProfiles() {
             const apiUrl = "https://6a0e6368-50f5-471a-94d8-c334dd6b4d38.mock.pstmn.io/users?interview=true&vue=true&codeonline=true&location=nois"
             const data = await fetch(apiUrl);
-            console.log("data = ", data);
+            // console.log("data = ", data);
             if (data && !!data.ok) {
                 return data.json()
             }
@@ -29,6 +32,10 @@ var app = new Vue({
         let data = await this.getListProfiles();
         this.listProfiles = data;
         console.log("this.listProfiles = ", this.listProfiles);
+        if (this.listProfiles.length > 0) {
+            this.currentListDisplay = this.listProfiles.slice(0, 10);
+            this.paginationLoaded = true;
+        }
     },
     mounted() {
         console.log("mounted");
