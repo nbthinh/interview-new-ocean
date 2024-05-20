@@ -9,9 +9,29 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
 </head>
 <body>
-    <div id="list-profiles-container" class="list-profiles-container">
+    <div style="text-align: center;" class="list-profiles-title">
+      <h2 >
+        List Profile
+      </h2>
+    </div>
+    <div id="list-profiles-container" class="list-profiles-container" style="display: flex; flex-wrap: wrap; width: 80%; margin: auto;">
       <!-- <div v-if="listProfiles.length <= 0">No data found</div> -->
-      <div v-for="item in listProfiles">{{item.avatar}}</div>
+      <div style="width: 33%; height: 12rem; display: flex; justify-content: center; align-items: center;">
+        <div style="border: 1px solid blue; height: 80%; width: 95%; display: flex; border-radius: 10px;">
+          <div class="avatar" style="width: 28%; display: flex; justify-content: center; align-items: center;">
+            <img
+              src="https://toquoc.mediacdn.vn/thumb_w/640/280518851207290880/2022/12/15/p0dnxrcv-16710704848821827978943.jpg"
+              style="width: 90%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 50%;"
+            />
+          </div>
+          <div class="information" style="width: 72%; margin: auto 0.2rem;">
+            <div style="font-weight: bold; font-size: 20px;">Larina Souten</div>
+            <div style="padding-top: 8px;">
+              engage clicks-and-mortar action-items
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 </body>
 <script src="./script.js"></script>
