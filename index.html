@@ -15,18 +15,19 @@
       </h2>
     </div>
     <div id="list-profiles-container" class="list-profiles-container">
-      <div class="profile-information">
+      <!-- Each profile is each profile-information -->
+      <div class="profile-information" v-for="profile in listProfiles">
         <div class="profile-avatar-information-container">
           <div class="avatar">
             <img
               class="avatar-image"
-              src="https://toquoc.mediacdn.vn/thumb_w/640/280518851207290880/2022/12/15/p0dnxrcv-16710704848821827978943.jpg"
+              v-bind:src="profile.avatar"
             />
           </div>
           <div class="information">
-            <div class="information-name">Larina Souten</div>
+            <div class="information-name">{{profile.first_name}} {{profile.last_name}}</div>
             <div class="information-bio">
-              engage clicks-and-mortar action-items
+              {{profile.bio}}
             </div>
           </div>
         </div>
