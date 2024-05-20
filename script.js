@@ -1,8 +1,7 @@
 var app = new Vue({
     el: "#list-profiles-container",
     data: {
-
-        helloworld: "15000 VND"
+        listProfiles: []
     },
     methods: {
         async getListProfiles() {
@@ -15,16 +14,12 @@ var app = new Vue({
             else {
                 return []
             }
-            // return new Promise((resolve, reject) => {
-            //     console.log("Hello world resolve = ",  resolve);
-            //     resolve(data);
-            // })
         }
     },
     async created() {
         let data = await this.getListProfiles();
-        console.log("data = ", data);
-        // console.log("data.json() = ", await data.json());
+        this.listProfiles = data;
+        console.log("this.listProfiles = ", this.listProfiles);
     },
     mounted() {
         console.log("mounted");

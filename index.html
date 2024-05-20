@@ -10,7 +10,8 @@
 </head>
 <body>
     <div id="list-profiles-container" class="list-profiles-container">
-        Hello world: {{helloworld}}
+      <!-- <div v-if="listProfiles.length <= 0">No data found</div> -->
+      <div v-for="item in listProfiles">{{item.avatar}}</div>
     </div>
 </body>
 <script src="./script.js"></script>
