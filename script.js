@@ -4,7 +4,8 @@ var app = new Vue({
         listProfiles: [],
         paginationLoaded: false,
         currentPage: 1,
-        currentListDisplay: []
+        currentListDisplay: [],
+        numOfPaginations: 0
     },
     methods: {
         async getListProfiles() {
@@ -18,10 +19,14 @@ var app = new Vue({
                 return []
             }
         },
-        isMobile() {
-            const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-            return regex.test(navigator.userAgent);
-          }
+        isCurrentPage(page) {
+            if (page == this.currentPage) return "active";
+            else return ""
+        },
+        handleChangePage(page) {
+            this.currentPage = page;
+            this.currentListDisplay = this.listProfiles.slice( (page - 1)*10, page*10)
+        }
     },
     computed: {
         getEachProfileWidth() {
@@ -31,9 +36,10 @@ var app = new Vue({
     async created() {
         let data = await this.getListProfiles();
         this.listProfiles = data;
-        console.log("this.listProfiles = ", this.listProfiles);
         if (this.listProfiles.length > 0) {
             this.currentListDisplay = this.listProfiles.slice(0, 10);
+            console.log("this.listProfiles = ", Math.ceil(this.listProfiles.length/10));
+            this.numOfPaginations = Math.ceil(this.listProfiles.length/10);
             this.paginationLoaded = true;
         }
     },

@@ -35,16 +35,21 @@
           </div>
         </div>
       </div>
-      <div class="pagination" v-if="paginationLoaded">
-        <a href="#">&laquo;</a>
-        <a href="#">1</a>
-        <a href="#" class="active">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a href="#">&raquo;</a>
+      <div class="pagination" v-if="paginationLoaded && numOfPaginations > 0">
+        <a class="pagination-pointer" v-on:click="handleChangePage(1)">&laquo;</a>
+
+        <a
+          class="pagination-pointer"
+          v-for="page in numOfPaginations"
+          v-bind:class="isCurrentPage(page)"
+          v-on:click="handleChangePage(page)"
+        >
+          <span>{{page}}</span>
+        </a>
+
+        <a class="pagination-pointer" v-on:click="handleChangePage(numOfPaginations)">&raquo;</a>
       </div>
+      {{currentPage}}
     </div>
 </body>
 <script src="./script.js"></script>
