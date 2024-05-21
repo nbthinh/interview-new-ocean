@@ -15,6 +15,10 @@
     justify-content: center;
 }
 
+.data-not-found-center-text {
+    padding-top: 10px;
+}
+
 .list-profiles-container {
     display: flex;
     flex-wrap: wrap;
