@@ -15,7 +15,6 @@ var app = new Vue({
             const data = await fetch(
                 apiUrl
             );
-            console.log("checker data = ", data);
             if (data && !!data.ok) {
                 return data.json()
             }
@@ -49,7 +48,6 @@ var app = new Vue({
                     searchList.push(currProfile);
                     continue;
                 }
-                // console.log("currProfile = ", currProfile);
             }
             this.currentListDisplay = searchList;
         }
@@ -69,6 +67,5 @@ var app = new Vue({
         }
     },
     mounted() {
-        console.log("mounted");
     }
 })
