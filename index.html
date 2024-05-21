@@ -49,7 +49,7 @@
 
         <a class="pagination-pointer" v-on:click="handleChangePage(numOfPaginations)">&raquo;</a>
       </div>
-      {{currentPage}}
+      {{currentPage}} => {{(currentPage - 1)*maxProfilesPerPage}} -  {{currentPage*maxProfilesPerPage - 1}}
     </div>
 </body>
 <script src="./script.js"></script>
