@@ -7,10 +7,6 @@
   <title>Document</title>
   <link rel="stylesheet" href="./style.css">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-
 </head>
 <body>
     <div id="app">
@@ -20,7 +16,11 @@
           List Profile
         </h2>
       </div>
-      <div class="list-profiles-container data-not-found-center-text" v-if="currentListDisplay.length <= 0">
+      <div class="filter-container">
+        <input v-on:keyup="handleSearchProfiles" v-bind:value="searchField" class="filter-container-input" type="text" placeholder="Search profile here" /> 
+      </div>
+      Search Value: {{searchField}}
+      <div class="data-not-found-center-text" v-if="currentListDisplay.length <= 0">
         Data not found
       </div>
       <div class="list-profiles-container">
@@ -102,7 +102,7 @@
           </span>
           <a class="pagination-pointer" v-on:click="handleChangePage(numOfPaginations)">&raquo;</a>
       </div>
-      Current Page: {{currentPage}} => {{(currentPage - 1)*maxProfilesPerPage}} -  {{currentPage*maxProfilesPerPage - 1}}
+      <!-- Current Page: {{currentPage}} => {{(currentPage - 1)*maxProfilesPerPage}} -  {{currentPage*maxProfilesPerPage - 1}} -->
     </div>
 </body>
 <script src="./script.js"></script>

@@ -2,7 +2,16 @@
     text-align: center;
 }
 
-.data-not-found-center-text {
+.filter-container-input {
+    width: inherit;
+    padding: 8px;
+}
+
+.data-not-found-center-text, .filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    width: 80%; 
     justify-content: center;
 }
 
@@ -101,6 +110,10 @@
     
     .list-profiles-container .profile-information {
         width: 50%;
+    }
+    
+    .data-not-found-center-text, .filter-container {
+        width: 90%;
     }
 }
 

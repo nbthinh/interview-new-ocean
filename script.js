@@ -6,7 +6,8 @@ var app = new Vue({
         currentPage: 1,
         currentListDisplay: [],
         numOfPaginations: 0,
-        maxProfilesPerPage: 10
+        maxProfilesPerPage: 10,
+        searchField: ""
     },
     methods: {
         async getListProfiles() {
@@ -29,6 +30,24 @@ var app = new Vue({
         handleChangePage(page) {
             this.currentPage = page;
             this.currentListDisplay = this.listProfiles.slice( (page - 1)*this.maxProfilesPerPage, page*this.maxProfilesPerPage)
+        },
+        handleSearchProfiles(e) {
+            this.searchField = e.target.value;
+            let searchList = [];
+            let lowerSearchText = this.searchField.toLowerCase();
+            for (let i = 0; i < this.listProfiles.length; i++) {
+                let currProfile = this.listProfiles[i];
+                if (!!currProfile.first_name && currProfile.first_name.toLowerCase().includes(lowerSearchText)) {
+                    searchList.push(currProfile);
+                    continue;
+                }
+                if (!!currProfile.last_name && currProfile.last_name.toLowerCase().includes(lowerSearchText)) {
+                    searchList.push(currProfile);
+                    continue;
+                }
+                // console.log("currProfile = ", currProfile);
+            }
+            this.currentListDisplay = searchList;
         }
     },
     computed: {
