@@ -33,6 +33,10 @@ var app = new Vue({
         },
         handleSearchProfiles(e) {
             this.searchField = e.target.value;
+            if (this.searchField.trim() === "") {
+                this.currentListDisplay = this.listProfiles.slice( (this.currentPage - 1)*this.maxProfilesPerPage, this.currentPage*this.maxProfilesPerPage)
+                return;
+            }
             let searchList = [];
             let lowerSearchText = this.searchField.toLowerCase();
             for (let i = 0; i < this.listProfiles.length; i++) {

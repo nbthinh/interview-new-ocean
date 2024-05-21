@@ -19,7 +19,6 @@
       <div class="filter-container">
         <input v-on:keyup="handleSearchProfiles" v-bind:value="searchField" class="filter-container-input" type="text" placeholder="Search profile here" /> 
       </div>
-      Search Value: {{searchField}}
       <div class="data-not-found-center-text" v-if="currentListDisplay.length <= 0">
         Data not found
       </div>
@@ -42,7 +41,7 @@
           </div>
         </div>
       </div>
-      <div class="pagination" v-if="paginationLoaded && numOfPaginations > 0">
+      <div class="pagination" v-if="paginationLoaded && numOfPaginations > 0 && searchField.trim() === ''">
           <a class="pagination-pointer" v-on:click="handleChangePage(1)">&laquo;</a>
           <span v-if="numOfPaginations < 5">
             <a
