@@ -11,7 +11,7 @@ var app = new Vue({
     },
     methods: {
         async getListProfiles() {
-            const apiUrl = "https://ms-handson.azurewebsites.net/api/frontend/triggers/When_a_HTTP_request_is_received/invoke/users?api-version=2022-05-01&sp=/triggers/When_a_HTTP_request_is_received/run&sv=1.0&sig=gybnal1FlnemchB72aclaRMeO6Ed5UJOSp2ySwaQ-fM";
+            const apiUrl = "https://ms-hop.azurewebsites.net/api/users";
             const data = await fetch(
                 apiUrl
             );
