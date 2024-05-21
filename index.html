@@ -7,6 +7,10 @@
   <title>Document</title>
   <link rel="stylesheet" href="./style.css">
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
 </head>
 <body>
     <div id="app">
@@ -16,7 +20,10 @@
           List Profile
         </h2>
       </div>
-      <div id="list-profiles-container" class="list-profiles-container">
+      <div class="list-profiles-container data-not-found-center-text" v-if="currentListDisplay.length <= 0">
+        Data not found
+      </div>
+      <div class="list-profiles-container">
         <!-- Each profile is each profile-information -->
         <div class="profile-information" v-for="profile in currentListDisplay">
           <div class="profile-avatar-information-container">
@@ -36,20 +43,66 @@
         </div>
       </div>
       <div class="pagination" v-if="paginationLoaded && numOfPaginations > 0">
-        <a class="pagination-pointer" v-on:click="handleChangePage(1)">&laquo;</a>
+          <a class="pagination-pointer" v-on:click="handleChangePage(1)">&laquo;</a>
+          <span v-if="numOfPaginations < 5">
+            <a
+              class="pagination-pointer"
+              v-for="page in numOfPaginations"
+              v-bind:class="isCurrentPage(page)"
+              v-on:click="handleChangePage(page)"
+            >
+              <span>{{page}}</span>
+            </a>
+          </span>
+          <span v-else>
+            <span v-if="currentPage < 5">
+              <a
+                class="pagination-pointer"
+                v-for="page in 5"
+                v-bind:class="isCurrentPage(page)"
+                v-on:click="handleChangePage(page)"
+              >
+                <span>{{page}}</span>
+              </a>
+              <a class="pagination-pointer">
+                <span>...</span>
+              </a>
+              <a
+                class="pagination-pointer"
+                v-on:click="handleChangePage(numOfPaginations)"
+              >
+                <span>{{numOfPaginations}}</span>
+              </a>
+            </span>
+            <span v-else>
+              <a class="pagination-pointer">
+                <span>...</span>
+              </a>
+              <a
+                class="pagination-pointer"
+                v-for="page in currentPage"
+                v-if="currentPage - page < 2"
+                v-bind:class="isCurrentPage(page)"
+                v-on:click="handleChangePage(page)"
+              >
+                <span>{{page}}</span>
+              </a>
+              <a
+                class="pagination-pointer"
+                v-on:click="handleChangePage(currentPage + 1)"
+                v-if="currentPage <= numOfPaginations - 1"
+              >
+                <span>{{currentPage + 1}}</span>
+              </a>
+              <a class="pagination-pointer" v-if="currentPage < numOfPaginations -1">
+                <span>...</span>
+              </a>
 
-        <a
-          class="pagination-pointer"
-          v-for="page in numOfPaginations"
-          v-bind:class="isCurrentPage(page)"
-          v-on:click="handleChangePage(page)"
-        >
-          <span>{{page}}</span>
-        </a>
-
-        <a class="pagination-pointer" v-on:click="handleChangePage(numOfPaginations)">&raquo;</a>
+            </span>
+          </span>
+          <a class="pagination-pointer" v-on:click="handleChangePage(numOfPaginations)">&raquo;</a>
       </div>
-      {{currentPage}} => {{(currentPage - 1)*maxProfilesPerPage}} -  {{currentPage*maxProfilesPerPage - 1}}
+      Current Page: {{currentPage}} => {{(currentPage - 1)*maxProfilesPerPage}} -  {{currentPage*maxProfilesPerPage - 1}}
     </div>
 </body>
 <script src="./script.js"></script>

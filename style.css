@@ -1,6 +1,11 @@
 .list-profiles-title {
     text-align: center;
 }
+
+.data-not-found-center-text {
+    justify-content: center;
+}
+
 .list-profiles-container {
     display: flex;
     flex-wrap: wrap;
@@ -102,5 +107,8 @@
 @media only screen and (max-width: 431px) {
     .list-profiles-container .profile-information {
         width: 100%;
+    }
+    .pagination a {
+        padding: 5px 10px;
     }
 }

@@ -10,9 +10,11 @@ var app = new Vue({
     },
     methods: {
         async getListProfiles() {
-            const apiUrl = "https://6a0e6368-50f5-471a-94d8-c334dd6b4d38.mock.pstmn.io/users?interview=true&vue=true&codeonline=true&location=nois"
-            const data = await fetch(apiUrl);
-            // console.log("data = ", data);
+            const apiUrl = "https://ms-handson.azurewebsites.net/api/frontend/triggers/When_a_HTTP_request_is_received/invoke/users?api-version=2022-05-01&sp=/triggers/When_a_HTTP_request_is_received/run&sv=1.0&sig=gybnal1FlnemchB72aclaRMeO6Ed5UJOSp2ySwaQ-fM";
+            const data = await fetch(
+                apiUrl
+            );
+            console.log("checker data = ", data);
             if (data && !!data.ok) {
                 return data.json()
             }
