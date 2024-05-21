@@ -5,7 +5,8 @@ var app = new Vue({
         paginationLoaded: false,
         currentPage: 1,
         currentListDisplay: [],
-        numOfPaginations: 0
+        numOfPaginations: 0,
+        maxProfilesPerPage: 10
     },
     methods: {
         async getListProfiles() {
@@ -25,7 +26,7 @@ var app = new Vue({
         },
         handleChangePage(page) {
             this.currentPage = page;
-            this.currentListDisplay = this.listProfiles.slice( (page - 1)*10, page*10)
+            this.currentListDisplay = this.listProfiles.slice( (page - 1)*this.maxProfilesPerPage, page*this.maxProfilesPerPage)
         }
     },
     computed: {
@@ -37,9 +38,8 @@ var app = new Vue({
         let data = await this.getListProfiles();
         this.listProfiles = data;
         if (this.listProfiles.length > 0) {
-            this.currentListDisplay = this.listProfiles.slice(0, 10);
-            console.log("this.listProfiles = ", Math.ceil(this.listProfiles.length/10));
-            this.numOfPaginations = Math.ceil(this.listProfiles.length/10);
+            this.currentListDisplay = this.listProfiles.slice(0, this.maxProfilesPerPage);
+            this.numOfPaginations = Math.ceil(this.listProfiles.length/this.maxProfilesPerPage);
             this.paginationLoaded = true;
         }
     },
